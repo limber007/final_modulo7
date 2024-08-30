@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import useForm from './useForm'; // Asegúrate de importar el hook personalizado aquí
+import { useNavigate } from 'react-router-dom';
+import useForm from './useForm';  // Asegúrate de que esta ruta es correcta
 import './LoginForm.css';
 
 const LoginForm = () => {
   const [values, handleChange, resetForm] = useForm({
     username: '',
     email: '',
-    password: '',
+    password: ''
   });
-
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ const LoginForm = () => {
         payload: values,
       });
       setError('');
+      navigate('/landing');  // Redirigir a LandingPage después de login exitoso
     } else {
       setError('Password incorrecto');
     }
@@ -39,7 +40,7 @@ const LoginForm = () => {
 
   const handleConfirmLogout = () => {
     dispatch({ type: 'CLEAR_CREDENTIALS' });
-    resetForm();  // Resetear el formulario cuando se confirme el logout
+    resetForm();  // Resetea el formulario después del logout
     setShowLogoutModal(false);
   };
 

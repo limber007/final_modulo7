@@ -1,5 +1,6 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from '../App';
+import LoginForm from '../LoginForm';
 import LandingPage from '../screens/LandingPage/LandingPage';
 
 const router = createBrowserRouter([
@@ -9,9 +10,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <LoginForm />,
+      },
+      {
+        path: '/landing',
         element: <LandingPage />,
       },
-      // Aquí puedes agregar más rutas si es necesario
+      {
+        path: '*',
+        element: <Navigate to="/" replace />
+      }
     ],
   },
 ]);

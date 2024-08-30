@@ -1,10 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';  // Importar Outlet para renderizar las rutas hijas
+import { Outlet } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <div className="App">
-      <Outlet />  {/* Esto renderizará la LandingPage */}
+      <Navbar />
+      <Outlet />
     </div>
   );
 }
